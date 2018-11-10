@@ -4,15 +4,16 @@
 #include <iostream>
 #include <vector>
 #include <boost/python.hpp>
-#include "../lib/buckler/src/base.hpp"
+
+#include "../lib/buckler/src/buckler.hpp"
 
 
-
-class PyTarget :  buckler::Target {
+class PyBuckler : buckler::Buckler 
+{
 public:
-    PyTarget() {}
-
-    bool SetTarget(boost::python::object object) {
+    PyBuckler() {}
+    
+    void SetTarget(boost::python::object object) {
         using namespace boost::python;
         
         PyObject *py_object = object.ptr();
@@ -23,18 +24,7 @@ public:
         unsigned char * buf = (unsigned char * )py_buf.buf;
         int size = py_buf.len;
 
-        printf("%p", py_buf.buf);
-
-        SetBuffer(buf, size);
-        
-
-        std::cout << std::endl;
-        for (auto i = buffer.begin(); i != buffer.end(); ++i) {
-            std::cout << *i;
-        }
-        std::cout << std::endl;
-
-        return true;
+        target.SetBuffer(buf, size);
     }
 };
 
@@ -42,6 +32,6 @@ BOOST_PYTHON_MODULE(buckler)
 {
     using namespace boost::python;
 
-    class_<PyTarget>("target", init<>())
-        .def("set", &PyTarget::SetTarget, args("buf"), "");
+    class_<PyBuckler>("buckler", init<>())
+        .def("set", &PyBuckler::SetTarget, args("buf"), "");
 }
