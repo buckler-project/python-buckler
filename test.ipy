@@ -1,0 +1,5 @@
+from bin import buckler
+
+a = buckler.target()
+
+a.set(b'fugafuga')
