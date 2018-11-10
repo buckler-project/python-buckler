@@ -25,11 +25,17 @@ public:
         target.SetBuffer(buf, size);
         SetUp(target);
     }
+    
+    bool _Scan() {
+        Scan();
+        return result.is_hit;
+    }
 };
 
 BOOST_PYTHON_MODULE(buckler)
 {
     using namespace boost::python;
 
-    class_<PyBuckler>("buckler", init<boost::python::object>());
+    class_<PyBuckler>("buckler", init<boost::python::object>())
+        .def("scan", &PyBuckler::_Scan, "");
 }
