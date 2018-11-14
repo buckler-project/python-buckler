@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <vector>
+#include <map>
 #include <boost/python.hpp>
 
 #include "../lib/buckler/src/buckler.hpp"
@@ -30,6 +31,17 @@ public:
         Scan();
         return result.is_hit;
     }
+
+    boost::python::dict GetHits() {
+        boost::python::dict dict;
+        std::map<std::string, std::string>::iterator iter;
+        
+        for (iter = result.hits.begin(); iter != result.hits.end(); ++iter) {
+            dict[iter -> first] = iter -> second;
+        }
+
+        return dict;
+    }
 };
 
 BOOST_PYTHON_MODULE(buckler)
@@ -37,5 +49,6 @@ BOOST_PYTHON_MODULE(buckler)
     using namespace boost::python;
 
     class_<PyBuckler>("buckler", init<boost::python::object>())
-        .def("scan", &PyBuckler::_Scan, "");
+        .def("scan", &PyBuckler::_Scan, "")
+        .def("hits", &PyBuckler::GetHits, "");
 }
