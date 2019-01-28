@@ -4,15 +4,23 @@
 #include <iostream>
 #include <vector>
 #include <map>
+#include <Python.h>
 #include <boost/python.hpp>
 
+#include "../lib/buckler/src/base.hpp"
 #include "../lib/buckler/src/buckler.hpp"
+#include "../lib/buckler/src/utils.hpp"
+#include "../lib/buckler/src/signature.hpp"
 
 
 class PyBuckler : public buckler::Buckler 
 {
 public:
-    PyBuckler(boost::python::object object) {
+    buckler::Result result;
+
+    PyBuckler() {}
+    
+    bool _Scan(boost::python::object object) {
         using namespace boost::python;
         
         PyObject *py_object = object.ptr();
@@ -23,24 +31,32 @@ public:
         unsigned char * buf = (unsigned char *)py_buf.buf;
         int size = py_buf.len;
 
-        target.SetBuffer(buf, size);
-        SetUp(target);
-    }
-    
-    bool _Scan() {
-        Scan();
-        return result.is_hit;
+        target = buckler::Target(buf, size);
+        Load();
+
+        std::cout << signatures.repository.parent_path << std::endl;
+
+        result = Scan();
+
+        
+        
+        return result.has_hit;
     }
 
-    boost::python::dict GetHits() {
-        boost::python::dict dict;
-        std::map<std::string, std::string>::iterator iter;
-        
-        for (iter = result.hits.begin(); iter != result.hits.end(); ++iter) {
-            dict[iter -> first] = iter -> second;
+    boost::python::list GetHits() {
+        boost::python::list list;        
+       
+        for (auto itr = result.hits.begin(); itr != result.hits.end(); ++itr) {
+            boost::python::dict dict;
+
+            dict["scanner"] = itr->scanner;
+            dict["signatures"] = itr->signature;
+            dict["signature_file"] = itr->signature_file;
+
+            list.append(dict);
         }
 
-        return dict;
+        return list;
     }
 };
 
@@ -48,7 +64,7 @@ BOOST_PYTHON_MODULE(buckler)
 {
     using namespace boost::python;
 
-    class_<PyBuckler>("buckler", init<boost::python::object>())
-        .def("scan", &PyBuckler::_Scan, "")
-        .def("hits", &PyBuckler::GetHits, "");
+    class_<PyBuckler>("buckler")
+        .def("scan", &PyBuckler::_Scan)
+        .def("hits", &PyBuckler::GetHits);
 }
