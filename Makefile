@@ -6,7 +6,7 @@ LFLAGS  = -lpython3 -lboost_python3 -lpthread -lboost_filesystem -lboost_system 
 OBJDIR  = lib/buckler/obj
 SOURCE  = ./src/buckler.cxx
 OBJECT  = $(wildcard $(OBJDIR)/*$(OBJSFX))
-TARGET  = ./bin/buckler.so
+TARGET  = ./buckler.so
 
 
 build:
