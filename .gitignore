@@ -148,6 +148,4 @@ bin/*
 
 ./test.ipy
 
-.scanners/
-.signatures/
 test.py

@@ -10,7 +10,7 @@ TARGET  = ./bin/buckler.so
 
 
 build:
-	$(CC) $(SOURCE) $(OBJECT) -o $(TARGET) $(CFLAGS) $(LFLAGS) $(SFLAGS)
+	$(CC) $(SOURCE) ./lib/buckler/src/* -o $(TARGET) $(CFLAGS) $(LFLAGS) $(SFLAGS)
 
 clean:
 	rm -rf ./bin/*

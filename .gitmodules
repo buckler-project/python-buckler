@@ -1,3 +1,6 @@
 [submodule "buckler"]
 	path = lib/buckler
 	url = https://github.com/akakou/buckler
+[submodule "tests/.scanners/sample-scanner"]
+	path = tests/.scanners/sample-scanner
+	url = https://github.com/buckler-project/sample-scanner

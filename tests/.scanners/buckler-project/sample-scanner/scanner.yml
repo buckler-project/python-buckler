@@ -1,0 +1,5 @@
+url:
+  https://github.com/buckler-project/sample-scanner/releases/download/0.1/libsample.so
+
+path:
+  bin/libsample.so
