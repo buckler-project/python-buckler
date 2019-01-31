@@ -7,7 +7,7 @@ from bin import buckler
 
 class TestBuckler(unittest.TestCase):
     def test_hit(self):
-        bk = buckler.buckler()
+        bk = buckler.Buckler()
 
         has_hit = bk.scan(b'hello\nworld')
         self.assertTrue(has_hit)
@@ -16,15 +16,15 @@ class TestBuckler(unittest.TestCase):
         pprint.pprint(hits);
         self.assertEqual(
             [{
-                'scanner': '.scanners/sample-scanner',
-                'signature_file': '.signatures/first/1.line',
-                'signatures': '.signatures/first'
+                'scanner': '.scanners//buckler-project/sample-scanner',
+                'signature_file': '.signatures//buckler-project/first/1.line',
+                'signatures': '.signatures//buckler-project/first'
             }],
             hits
         )
 
     def test_unhit(self):
-        bk = buckler.buckler()
+        bk = buckler.Buckler()
         
         has_hit = bk.scan(b'hoge\nhoge')
         self.assertFalse(has_hit)
