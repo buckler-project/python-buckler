@@ -7,7 +7,7 @@ from bin import buckler
 
 class TestBuckler(unittest.TestCase):
     def test_hit(self):
-        bk = buckler.buckler()
+        bk = buckler.Buckler()
 
         has_hit = bk.scan(b'hello\nworld')
         self.assertTrue(has_hit)
@@ -24,7 +24,7 @@ class TestBuckler(unittest.TestCase):
         )
 
     def test_unhit(self):
-        bk = buckler.buckler()
+        bk = buckler.Buckler()
         
         has_hit = bk.scan(b'hoge\nhoge')
         self.assertFalse(has_hit)

@@ -64,7 +64,7 @@ BOOST_PYTHON_MODULE(buckler)
 {
     using namespace boost::python;
 
-    class_<PyBuckler>("buckler")
+    class_<PyBuckler>("Buckler")
         .def("scan", &PyBuckler::_Scan)
         .def("hits", &PyBuckler::GetHits);
 }
