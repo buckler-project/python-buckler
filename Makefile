@@ -1,6 +1,6 @@
 CC      = g++
 OBJSFX  = .o
-CFLAGS  = -g -Wall -std=c++17 -I/usr/include/python3.7m
+CFLAGS  = -g -Wall -std=c++17 -I/usr/include/python3.7m -I./lib/buckler/src
 SFLAGS  = -shared -fPIC -DPIC
 LFLAGS  = -lpython3 -lboost_python3 -lpthread -lboost_filesystem -lboost_system -lyaml-cpp -ldl 
 OBJDIR  = lib/buckler/obj
