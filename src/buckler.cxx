@@ -7,11 +7,10 @@
 #include <Python.h>
 #include <boost/python.hpp>
 
-#include "../lib/buckler/src/base.hpp"
-#include "../lib/buckler/src/buckler.hpp"
-#include "../lib/buckler/src/utils.hpp"
-#include "../lib/buckler/src/signature.hpp"
-
+#include <base.hpp>
+#include <buckler.hpp>
+#include <utils.hpp>
+#include <signature.hpp>
 
 class PyBuckler : public buckler::Buckler 
 {

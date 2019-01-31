@@ -146,6 +146,4 @@ peda*
 # Ignore Folders
 bin/*
 
-./test.ipy
 
-test.py

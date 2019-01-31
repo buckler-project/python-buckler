@@ -2,8 +2,7 @@ import sys, os, pprint
 import unittest
 
 sys.path.append(os.pardir)
-
-from bin import buckler
+import buckler
 
 class TestBuckler(unittest.TestCase):
     def test_hit(self):
