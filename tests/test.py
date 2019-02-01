@@ -16,7 +16,7 @@ class TestBuckler(unittest.TestCase):
         self.assertEqual(
             [{
                 'scanner': '.scanners//buckler-project/sample-scanner',
-                'signature_file': '.signatures//buckler-project/first/1.line',
+                'signature_file': '.signatures//buckler-project/first/data/1.line',
                 'signatures': '.signatures//buckler-project/first'
             }],
             hits
