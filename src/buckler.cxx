@@ -1,7 +1,5 @@
 #define BOOST_PYTHON_STATIC_LIB 
 
-#include <stdio.h>
-#include <iostream>
 #include <vector>
 #include <map>
 #include <Python.h>
@@ -33,11 +31,7 @@ public:
         target = buckler::Target(buf, size);
         Load();
 
-        std::cout << signatures.repository.parent_path << std::endl;
-
         result = Scan();
-
-        
         
         return result.has_hit;
     }
