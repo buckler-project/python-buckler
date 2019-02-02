@@ -5,10 +5,8 @@
 #include <Python.h>
 #include <boost/python.hpp>
 
-#include <base.hpp>
-#include <buckler.hpp>
-#include <utils.hpp>
-#include <signature.hpp>
+#include <buckler/base.hpp>
+#include <buckler/buckler.hpp>
 
 class PyBuckler : public buckler::Buckler 
 {
